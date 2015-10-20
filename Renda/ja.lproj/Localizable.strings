@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Renda
+
+  Created by Masaki Horimoto on 2015/09/14.
+  Copyright (c) 2015年 Masaki Horimoto. All rights reserved.
+*/
+
+// Localizable.strings(Japanese)
+"alertTitle" = "Game Center Unavailable";
+"alertMessage" = "Player is not signed in";
+
+"howToPlayTitle" = "遊び方";
+"howToPlayMessage" = "1. STARTボタンを押して下さい\n2. A/Bボタンを10秒間連打して下さい\n3. 友達と記録を競って下さい\n--------------------------------------\n指を離さずに素早くA/Bボタンを\nコスリ続けると高記録が狙えます";
+
+"shareDescription0" = "ハイスコア";
+"shareDescription1" = " ! あの名人まであと";
+"shareDescription2" = " ! \n[目指せ16連射 ! 最も充実した10秒の使い方 - #ShootSpeed]";
+"shareDescription3" = " ! あなたはあの名人を";
+"shareDescription4" = "超えてます ! \n[目指せ16連射 ! 最も充実した10秒の使い方 - #ShootSpeed]";

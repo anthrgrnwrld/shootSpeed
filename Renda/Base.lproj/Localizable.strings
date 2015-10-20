@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  Renda
+
+  Created by Masaki Horimoto on 2015/09/14.
+  Copyright (c) 2015年 Masaki Horimoto. All rights reserved.
+*/
+
+// Localizable.strings(Base)
+"alertTitle" = "Game Center Unavailable";
+"alertMessage" = "Player is not signed in";
+
+"howToPlayTitle" = "How to play";
+"howToPlayMessage" = "1. Tap START.\n2. Continue taphing A/B button in 10 seconds.\n3. Compete the record with your friend.\n--------------------------------------\nYou are going to get good score if you continue slide with a finger between the A and B button";
+
+"shareDescription0" = "High socre ";
+"shareDescription1" = "! Not enough ";
+"shareDescription2" = " to the target.\n[Get and Spend good 10 sec! - #ShootSpeed]";
+"shareDescription3" = "! Have enough ";
+"shareDescription4" = " to the target. \n[Get and Spend good 10 sec! - #ShootSpeed]";

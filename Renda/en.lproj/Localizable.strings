@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Renda
+
+  Created by Masaki Horimoto on 2015/09/14.
+  Copyright (c) 2015年 Masaki Horimoto. All rights reserved.
+*/
+
+// Localizable.strings(Base)
+"alertTitle" = "Error"
+"alertMessage" = "Please login Game Center"
+"actionTitle" = "OK"

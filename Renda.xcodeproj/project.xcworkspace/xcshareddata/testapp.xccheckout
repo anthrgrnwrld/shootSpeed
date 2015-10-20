@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>313F7D35-BE13-4765-AE58-8CBF40BC5D5E</string>
+	<key>IDESourceControlProjectName</key>
+	<string>testapp</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>62A73276C2EF8E90438E88E3B32070145DD45C92</key>
+		<string>https://github.com/anthrgrnwrld/renda.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>testapp.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>62A73276C2EF8E90438E88E3B32070145DD45C92</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/anthrgrnwrld/renda.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>62A73276C2EF8E90438E88E3B32070145DD45C92</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>62A73276C2EF8E90438E88E3B32070145DD45C92</string>
+			<key>IDESourceControlWCCName</key>
+			<string>renda2</string>
+		</dict>
+	</array>
+</dict>
+</plist>
