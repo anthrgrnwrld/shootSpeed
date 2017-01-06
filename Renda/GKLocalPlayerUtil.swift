@@ -12,12 +12,12 @@ import GameKit
 struct GKLocalPlayerUtil {
     static var localPlayer:GKLocalPlayer = GKLocalPlayer();
     
-    static func login(target: UIViewController){
+    static func login(_ target: UIViewController){
         self.localPlayer = GKLocalPlayer.localPlayer()
         self.localPlayer.authenticateHandler = {(viewController, error) -> Void in
             if ((viewController) != nil) {
                 print("LoginCheck: Failed - LoginPageOpen")
-                target.presentViewController(viewController!, animated: true, completion: nil);
+                target.present(viewController!, animated: true, completion: nil);
             }else{
                 print("LoginCheck: Success")
                 if (error == nil){

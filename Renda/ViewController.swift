@@ -11,7 +11,7 @@ import GameKit
 import AudioToolbox
 import Social
 
-class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBannerViewDelegate {
+class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBannerViewDelegate,GADInterstitialDelegate {
     
     @IBOutlet var counterDigit: [UIImageView]!
     @IBOutlet var decimalPlace: [UIImageView]!
@@ -27,15 +27,17 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     @IBOutlet weak var buttonGameCenter: UIButton!
     @IBOutlet weak var buttonFacebook: UIButton!
     
-    let YOUR_ID = "ca-app-pub-3530000000000000/0123456789"  // Enter Ad's ID here
+    let YOUR_BARNER_ID = "ca-app-pub-4555831884532149/4862920516"  // Enter Ad's ID here
+    let YOUR_INTERSTITIAL_ID = "ca-app-pub-4555831884532149/5150752517"  // Enter Ad's ID here
     let TEST_DEVICE_ID = "61b0154xxxxxxxxxxxxxxxxxxxxxxxe0" // Enter Test ID here
-    let AdMobTest:Bool = true
-    let SimulatorTest:Bool = true
+    let AdMobTest:Bool = false
+    let SimulatorTest:Bool = false
+    var _interstitial: GADInterstitial?
     
     var countPushing = 0
     var countupTimer = 0
-    var timer = NSTimer()
-    let ud = NSUserDefaults.standardUserDefaults()
+    var timer = Timer()
+    let ud = UserDefaults.standard
     var timerState = false  //timerStateがfalseの時にはTimerをスタート。trueの時には無視する。
     var startState = false  //startStateがtrueの時にはゲーム開始できる
     var highScore = 0
@@ -49,6 +51,8 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     let buttonBImageSelected :UIImage? = UIImage(named:"buttonB_selected.png")
     let buttonStartImageSelected :UIImage? = UIImage(named:"buttonStart_selected.png")
     var capturedImage: UIImage?
+    var count = 0
+    var highScoreFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +68,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         
         capturedImage = GetImage() as UIImage     // キャプチャ画像を取得.
 
+        _interstitial = createAndLoadInterstitial()
+
+
     }
 
     /**
@@ -78,13 +85,13 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         
         // ビットマップ画像のcontextを作成.
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
-        let context: CGContextRef = UIGraphicsGetCurrentContext()!
+        let context: CGContext = UIGraphicsGetCurrentContext()!
         
         // 対象のview内の描画をcontextに複写する.
-        self.view.layer.renderInContext(context)
+        self.view.layer.render(in: context)
         
         // 現在のcontextのビットマップをUIImageとして取得.
-        let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let capturedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         
         // contextを閉じる.
         UIGraphicsEndImageContext()
@@ -98,14 +105,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     */
     func firstDisplayLoad() {
         
-        highScore = ud.integerForKey(udKey)     //保存済みのハイスコアを取得
+        highScore = ud.integer(forKey: udKey)     //保存済みのハイスコアを取得
         print("highScore is \(highScore)")
         
         let tmpNum = counterDigit != nil ? counterDigit.count : 0
         
         //スコアを表示しているViewの枠線を描写
         displayView.layer.borderWidth = 1.0
-        displayView.layer.borderColor = UIColor.grayColor().CGColor
+        displayView.layer.borderColor = UIColor.gray.cgColor
         
         let highScoreAfterEdit = editCount(highScore, digitNum: tmpNum)
         updateCounter(highScoreAfterEdit)       //カウンタを初期表示にアップデート
@@ -119,15 +126,15 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     ボタン画像表示用関数
     */
     func buttonDisplay() {
-        buttonA.setImage(buttonAImage!, forState: .Normal)
-        buttonA.setImage(buttonAImageSelected!, forState: .Highlighted)
-        buttonB.setImage(buttonBImage!, forState: .Normal)
-        buttonB.setImage(buttonBImageSelected!, forState: .Highlighted)
-        buttanStart.setImage(buttonStartImage!, forState: .Normal)
-        buttanStart.setImage(buttonStartImageSelected!, forState: .Highlighted)
-        buttonTweet.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        buttonGameCenter.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        buttonFacebook.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        buttonA.setImage(buttonAImage!, for: UIControlState())
+        buttonA.setImage(buttonAImageSelected!, for: .highlighted)
+        buttonB.setImage(buttonBImage!, for: UIControlState())
+        buttonB.setImage(buttonBImageSelected!, for: .highlighted)
+        buttanStart.setImage(buttonStartImage!, for: UIControlState())
+        buttanStart.setImage(buttonStartImageSelected!, for: .highlighted)
+        buttonTweet.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        buttonGameCenter.imageView?.contentMode = UIViewContentMode.scaleAspectFit
+        buttonFacebook.imageView?.contentMode = UIViewContentMode.scaleAspectFit
     }
     
     /**
@@ -135,17 +142,17 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :returns: GADBannerView
     */
-    private func getAdBannerView() -> GADBannerView {
+    fileprivate func getAdBannerView() -> GADBannerView {
         
         var bannerView: GADBannerView = GADBannerView()
         
-        let myBoundSize = UIScreen.mainScreen().bounds.size  // Windowの表示領域を取得する。(広告の表示サイズのために使用する)
+        let myBoundSize = UIScreen.main.bounds.size  // Windowの表示領域を取得する。(広告の表示サイズのために使用する)
         if myBoundSize.width > 320 {bannerView = GADBannerView(adSize:kGADAdSizeFullBanner)}
         else {bannerView = GADBannerView(adSize:kGADAdSizeBanner)}
         
-        bannerView.frame.origin = CGPointMake(0, 20)
-        bannerView.frame.size = CGSizeMake(self.view.frame.width, bannerView.frame.height)
-        bannerView.adUnitID = "\(YOUR_ID)"
+        bannerView.frame.origin = CGPoint(x: 0, y: 20)
+        bannerView.frame.size = CGSize(width: self.view.frame.width, height: bannerView.frame.height)
+        bannerView.adUnitID = "\(YOUR_BARNER_ID)"
         bannerView.delegate = self
         bannerView.rootViewController = self
         
@@ -159,27 +166,27 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             }
         }
         
-        bannerView.loadRequest(request)
+        bannerView.load(request)
         
         return bannerView
     }
     
-    func adViewDidReceiveAd(adView: GADBannerView){
+    func adViewDidReceiveAd(_ adView: GADBannerView){
         print("adViewDidReceiveAd:\(adView)")
     }
-    func adView(adView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError){
+    func adView(_ adView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError){
         print("error:\(error)")
     }
-    func adViewWillPresentScreen(adView: GADBannerView){
+    func adViewWillPresentScreen(_ adView: GADBannerView){
         print("adViewWillPresentScreen")
     }
-    func adViewWillDismissScreen(adView: GADBannerView){
+    func adViewWillDismissScreen(_ adView: GADBannerView){
         print("adViewWillDismissScreen")
     }
-    func adViewDidDismissScreen(adView: GADBannerView){
+    func adViewDidDismissScreen(_ adView: GADBannerView){
         print("adViewDidDismissScreen")
     }
-    func adViewWillLeaveApplication(adView: GADBannerView){
+    func adViewWillLeaveApplication(_ adView: GADBannerView){
         print("adViewWillLeaveApplication")
     }
     
@@ -193,7 +200,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     imageBeeのサイズ調整処理。320x480の解像度のデバイスのみ
     */
     func adjustImageBee() {
-        let myBoundSize = UIScreen.mainScreen().bounds.size  // Windowの表示領域を取得する。(imageBeeの表示サイズのために使用する)
+        let myBoundSize = UIScreen.main.bounds.size  // Windowの表示領域を取得する。(imageBeeの表示サイズのために使用する)
         if myBoundSize.height <= 480 {
             imageBee.bounds.size.height = 28    //320*480の表示時のみimageBeeの大きさを変更する
             imageBee.bounds.size.width = 28
@@ -204,15 +211,17 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     Startボタンを押した時に実行する関数 その1
     */
-    @IBAction func buttonStart(sender: AnyObject) {
+    @IBAction func buttonStart(_ sender: AnyObject) {
         
         if startState != false {    //starStateがtrueの時には処理を終了
             return
         }
         
+        highScoreFlag = false
+        
         //Viewの点滅を終了する。
         finishBlinkAnimationWithView(imageBee)
-        for (_, view) in self.counterDigit.enumerate() {
+        for (_, view) in self.counterDigit.enumerated() {
             finishBlinkAnimationWithView(view)
         }
         
@@ -228,7 +237,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     Startボタンを押した時に実行する関数 その2 (音声再生用)
     */
-    @IBAction func buttonStart2(sender: AnyObject) {
+    @IBAction func buttonStart2(_ sender: AnyObject) {
         
         AudioServicesPlaySystemSoundWithoutVibration("Tink.caf")
         
@@ -237,7 +246,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     Aボタンを押した時に実行する関数
     */
-    @IBAction func pressButtonA(sender: AnyObject) {
+    @IBAction func pressButtonA(_ sender: AnyObject) {
         
         pressButtonFunc()
         
@@ -246,7 +255,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     Bボタンを押した時に実行する関数
     */
-    @IBAction func pressButtonB(sender: AnyObject) {
+    @IBAction func pressButtonB(_ sender: AnyObject) {
 
         pressButtonFunc()
         
@@ -263,12 +272,12 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         //timerStateがfalseの時にはTimerをスタート。trueの時には無視する。
         if timerState == false && startState {
             timerState = true
-            timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("updateTimer"), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.updateTimer), userInfo: nil, repeats: true)
         }
         
         if timerState && startState {
             
-            countPushing++  //countPushingをインクリメント
+            countPushing += 1  //countPushingをインクリメント
  
             let tmpNum = counterDigit != nil ? counterDigit.count : 0
             
@@ -288,11 +297,11 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: soundName:再生したいシステムサウンドのファイル名
     */
-    func AudioServicesPlaySystemSoundWithoutVibration(soundName :String) {
+    func AudioServicesPlaySystemSoundWithoutVibration(_ soundName :String) {
         
         var soundIdRing:SystemSoundID = 0
-        let soundUrl = NSURL(fileURLWithPath: "/System/Library/Audio/UISounds/\(soundName)")
-        AudioServicesCreateSystemSoundID(soundUrl, &soundIdRing)
+        let soundUrl = URL(fileURLWithPath: "/System/Library/Audio/UISounds/\(soundName)")
+        AudioServicesCreateSystemSoundID(soundUrl as CFURL, &soundIdRing)
         AudioServicesPlaySystemSound(soundIdRing)
         
     }
@@ -305,7 +314,8 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     :param: digitNum:変換する桁数
     :returns: digitArray:変換結果を入れる配列
     */
-    func editCount(var count :Int, digitNum :Int) -> [Int] {
+    func editCount(_ count :Int, digitNum :Int) -> [Int] {
+        var count = count
         
         var digitArray = [Int]()
         
@@ -324,7 +334,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: countArray:配列に編集済みのカウント配列*要editCount
     */
-    func updateCounter(countArray :[Int]) {
+    func updateCounter(_ countArray :[Int]) {
         
         if counterDigit != nil && countArray.count == counterDigit.count {
             
@@ -357,7 +367,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: countArray:配列に編集済みのカウント配列*要editCount
     */
-    func undisplayZero(countArray :[Int]) {
+    func undisplayZero(_ countArray :[Int]) {
         
         for index in 0 ... (countArray.count - 1) {counterDigit[index].alpha = 1.0}
         
@@ -383,13 +393,13 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     func updateTimer() {
         //println("\(__FUNCTION__) is called")
         
-        countupTimer++                                      //countupTimerをインクリメント
+        countupTimer += 1                                      //countupTimerをインクリメント
         let countdownTimer = editTimerCount(countupTimer)   //カウントアップ表記をカウントダウン表記へ変換
         updateTimerLabel(countdownTimer)                    //タイマー表示ラベルをアップデート
         
         if countdownTimer <= 0 {timeupFunc()}               //ゲーム開始より10秒経過後、ゲーム完了処理を実行
         
-        print("\(__FUNCTION__) is called! \(countupTimer)")
+        print("\(#function) is called! \(countupTimer)")
     }
     
     /**
@@ -397,13 +407,13 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     */
     func timeupFunc() {
 
-        let highScoreFlag = countPushing > highScore ? true : false
+        highScoreFlag = countPushing > highScore ? true : false
         highScore = countPushing > highScore ? countPushing : highScore
         timerState = false
         startState = false
         timer.invalidate()
         print("highScore is \(highScore)")
-        ud.setInteger(highScore, forKey: udKey)     //ハイスコアをNSUserDefaultsのインスタンスに保存
+        ud.set(highScore, forKey: udKey)     //ハイスコアをNSUserDefaultsのインスタンスに保存
         ud.synchronize()                            //保存する情報の反映
         GKScoreUtil.reportScores(highScore, leaderboardid: leaderboardid)   //GameCenter Score Transration
         
@@ -412,21 +422,43 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             capturedImage = GetImage() as UIImage     // キャプチャ画像を取得.
             AudioServicesPlaySystemSoundWithoutVibration("alarm.caf")
             blinkAnimationWithView(imageBee)
-            for (_, view) in self.counterDigit.enumerate() {
+            for (_, view) in self.counterDigit.enumerated() {
                 blinkAnimationWithView(view)
             }
         }
         
+        count += 1
+        
+        if count > 2 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                self.presentInterstitial()
+            }
+            
+        }
+        
 
     }
- 
+    
+    func interstitialDidDismissScreen(_ ad: GADInterstitial!) {
+        
+        //ハイスコア更新の場合にはimageBeeとカウンタ表示を点滅させる
+        if highScoreFlag {
+            finishBlinkAnimationWithView(imageBee)
+            firstDisplayLoad()
+            blinkAnimationWithView(imageBee)
+            for (_, view) in self.counterDigit.enumerated() {
+                blinkAnimationWithView(view)
+            }
+        }
+    }
+    
     /**
     指定されたViewを1秒間隔で点滅させる
     
     :param: view:点滅させるView
     */
-    func blinkAnimationWithView(view :UIView) {
-        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.Repeat, animations: { () -> Void in
+    func blinkAnimationWithView(_ view :UIView) {
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: UIViewAnimationOptions.repeat, animations: { () -> Void in
             view.alpha = 0
             }, completion: nil)
     }
@@ -436,9 +468,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: view:点滅を終了するView
     */
-    func finishBlinkAnimationWithView(view :UIView) {
+    func finishBlinkAnimationWithView(_ view :UIView) {
         UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.animateWithDuration(0.001, animations: {
+        UIView.animate(withDuration: 0.001, animations: {
             view.alpha = 1.0
         })
 //        //こっちの方法でもOK
@@ -453,7 +485,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     :param: timerCount:カウントアップタイマ値
     :returns: digitArray:カウントダウンタイマ値(Start 10)
     */
-    func editTimerCount(timerCount: Int) -> Int {
+    func editTimerCount(_ timerCount: Int) -> Int {
         
         var timerCountAfterEdit: Int?
         
@@ -469,7 +501,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: countArray:配列に編集済みのカウント配列*要editCount
     */
-    func updateTimerLabel(timerCount: Int) {
+    func updateTimerLabel(_ timerCount: Int) {
  
         if decimalPlace != nil {
 
@@ -489,7 +521,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     GameCenterボタンを押した時に実行する関数
     */
-    @IBAction func pressGameCenter(sender: AnyObject) {
+    @IBAction func pressGameCenter(_ sender: AnyObject) {
         
         AudioServicesPlaySystemSoundWithoutVibration("Tink.caf")
         
@@ -507,11 +539,11 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         }
         
         let localPlayer = GKLocalPlayer()
-        localPlayer.loadDefaultLeaderboardIdentifierWithCompletionHandler { (leaderboardIdentifier : String?, error : NSError?) -> Void in
+        localPlayer.loadDefaultLeaderboardIdentifier { (leaderboardIdentifier : String?, error : Error?) -> Void in
             if error != nil {
                 print(error!.localizedDescription)
                 
-                let iOSVersion: NSString! = UIDevice.currentDevice().systemVersion as NSString
+                let iOSVersion: NSString! = UIDevice.current.systemVersion as NSString
                 print("iOSVersion is \(iOSVersion)")
                 
                 //Verによってアラート動作を変える
@@ -523,9 +555,9 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             } else {
                 let gameCenterController:GKGameCenterViewController = GKGameCenterViewController()
                 gameCenterController.gameCenterDelegate = self  //このViewControllerにはGameCenterControllerDelegateが実装されている必要があります
-                gameCenterController.viewState = GKGameCenterViewControllerState.Leaderboards
+                gameCenterController.viewState = GKGameCenterViewControllerState.leaderboards
                 gameCenterController.leaderboardIdentifier = self.leaderboardid //該当するLeaderboardのIDを指定します
-                self.presentViewController(gameCenterController, animated: true, completion: nil);
+                self.present(gameCenterController, animated: true, completion: nil);
             }
         }
 
@@ -542,12 +574,12 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             // Style Alert
             let alert: UIAlertController = UIAlertController(title:alertTitle,
                 message: alertMessage,
-                preferredStyle: UIAlertControllerStyle.Alert
+                preferredStyle: UIAlertControllerStyle.alert
             )
             
             // Default 複数指定可
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK",
-                style: UIAlertActionStyle.Default,
+                style: UIAlertActionStyle.default,
                 handler:{
                     (action:UIAlertAction!) -> Void in
                     print("OK")
@@ -557,14 +589,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             alert.addAction(defaultAction)
             
             // Display
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         } else {
             
             // Fallback on earlier versions
             let alert = UIAlertView()
             alert.title = alertTitle
             alert.message = alertMessage
-            alert.addButtonWithTitle(actionTitle)
+            alert.addButton(withTitle: actionTitle)
             alert.show()
             
         }
@@ -572,7 +604,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     }
         
     
-    @IBAction func pressHowToPlay(sender: AnyObject) {
+    @IBAction func pressHowToPlay(_ sender: AnyObject) {
         
         AudioServicesPlaySystemSoundWithoutVibration("Tink.caf")
 
@@ -600,12 +632,12 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         if #available(iOS 8.0, *) {
             let alert: UIAlertController = UIAlertController(title:howToPlayTitle,
                 message: howToPlayMessage,
-                preferredStyle: UIAlertControllerStyle.Alert
+                preferredStyle: UIAlertControllerStyle.alert
             )
             
             // Default 複数指定可
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK",
-                style: UIAlertActionStyle.Default,
+                style: UIAlertActionStyle.default,
                 handler:{
                     (action:UIAlertAction!) -> Void in
                     print("OK")
@@ -615,14 +647,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             alert.addAction(defaultAction)
             
             // Display
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
             
         } else {
             // Fallback on earlier versions
             let alert = UIAlertView()
             alert.title = howToPlayTitle
             alert.message = howToPlayMessage
-            alert.addButtonWithTitle(howToPlayActionTitle)
+            alert.addButton(withTitle: howToPlayActionTitle)
             alert.show()
         }
 
@@ -632,10 +664,10 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     /**
     Leaderboardを"DONE"押下後にCloseする
     */
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController) {
-        print("\(__FUNCTION__) is called")
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        print("\(#function) is called")
         //code to dismiss your gameCenterViewController
-        gameCenterViewController.dismissViewControllerAnimated(true, completion: nil);
+        gameCenterViewController.dismiss(animated: true, completion: nil);
     }
     
     /**
@@ -643,7 +675,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
     
     :param: countPushing:Pushカウント数
     */
-    func moveImageBeeWithCountPushing(countPushing: Int) {
+    func moveImageBeeWithCountPushing(_ countPushing: Int) {
         print("countPushing is \(countPushing)")
         
         let deltaXperOnePushing = (positionBeeMostRight.center.x - positionBeeMostLeft.center.x)/160    //1Push当たりのx移動量
@@ -652,7 +684,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         
     }
 
-    @IBAction func pressTweet(sender: AnyObject) {
+    @IBAction func pressTweet(_ sender: AnyObject) {
         
         AudioServicesPlaySystemSoundWithoutVibration("Tink.caf")
         
@@ -666,7 +698,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         let tweetDescription2:String = NSLocalizedString("shareDescription2", comment: "ツイート内容2")
         let tweetDescription3:String = NSLocalizedString("shareDescription3", comment: "ツイート内容3")
         let tweetDescription4:String = NSLocalizedString("shareDescription4", comment: "ツイート内容4")
-        let tweetURL:NSURL = NSURL(string: "https://itunes.apple.com/us/app/get-high-score!-how-many-times/id1029309778?l=ja&ls=1&mt=8")!
+        let tweetURL:URL = URL(string: "https://itunes.apple.com/us/app/get-high-score!-how-many-times/id1029309778?l=ja&ls=1&mt=8")!
 
         //ハイスコアが160回超えた時とそれ以下で表示メッセージを変える。
         if highScore > 160 {
@@ -676,14 +708,14 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             
         }
 
-        twitterPostView.addURL(tweetURL)
-        twitterPostView.addImage(capturedImage)
+        twitterPostView.add(tweetURL)
+        twitterPostView.add(capturedImage)
 
-        self.presentViewController(twitterPostView, animated: true, completion: nil)
+        self.present(twitterPostView, animated: true, completion: nil)
         
     }
 
-    @IBAction func pressFacebook(sender: AnyObject) {
+    @IBAction func pressFacebook(_ sender: AnyObject) {
         AudioServicesPlaySystemSoundWithoutVibration("Tink.caf")
         
         if timerState {    //timerStateがtrueの時(=ゲーム実行中)は処理を終了
@@ -696,7 +728,7 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
         let facebookDescription2:String = NSLocalizedString("shareDescription2", comment: "ツイート内容2")
         let facebookDescription3:String = NSLocalizedString("shareDescription3", comment: "ツイート内容3")
         let facebookDescription4:String = NSLocalizedString("shareDescription4", comment: "ツイート内容4")
-        let facebookURL:NSURL = NSURL(string: "https://itunes.apple.com/us/app/shootspeed-get-high-score!/id1029309778?l=ja&ls=1&mt=8")!
+        let facebookURL:URL = URL(string: "https://itunes.apple.com/us/app/shootspeed-get-high-score!/id1029309778?l=ja&ls=1&mt=8")!
         
         //ハイスコアが160回超えた時とそれ以下で表示メッセージを変える。
         if highScore > 160 {
@@ -706,10 +738,39 @@ class ViewController: UIViewController, GKGameCenterControllerDelegate, GADBanne
             
         }
         
-        facebookPostView.addURL(facebookURL)
-        facebookPostView.addImage(capturedImage)
+        facebookPostView.add(facebookURL)
+        facebookPostView.add(capturedImage)
         
-        self.presentViewController(facebookPostView, animated: true, completion: nil)
+        self.present(facebookPostView, animated: true, completion: nil)
+        
+    }
+    
+    fileprivate func createAndLoadInterstitial()->GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: YOUR_INTERSTITIAL_ID)
+        interstitial?.delegate = self
+        let request:GADRequest = GADRequest()
+        
+        if AdMobTest {
+            if SimulatorTest {
+                request.testDevices = [kGADSimulatorID]
+            } else {
+                request.testDevices = [TEST_DEVICE_ID]
+            }
+        }
+        
+        interstitial?.load(request)
+        
+        return interstitial!
+    }
+    
+    fileprivate func presentInterstitial() {
+        
+        guard let interstitial = _interstitial else {
+            print ("_interstitial is nil.")
+            return
+        }
+        
+        interstitial.present(fromRootViewController: self)
         
     }
 

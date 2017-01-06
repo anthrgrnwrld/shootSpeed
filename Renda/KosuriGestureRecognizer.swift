@@ -34,14 +34,14 @@ class KosuriGestureRecognizer : NSObject {
     let buttonBImage = UIImage(named:"buttonB.png")
     let buttonBImageSelected = UIImage(named:"buttonB_selected.png")
     
-    init(_targetViewA:UIButton, _targetViewB:UIButton, didPush:()->Void) {
+    init(_targetViewA:UIButton, _targetViewB:UIButton, didPush:@escaping ()->Void) {
         super.init()
         
         self.targetViewA = _targetViewA
         self.targetViewB = _targetViewB
         self.didPush = didPush
         
-        pan.addTarget(self, action: Selector("didPan:"))
+        pan.addTarget(self, action: #selector(KosuriGestureRecognizer.didPan(_:)))
         _targetViewA.superview?.superview?.addGestureRecognizer(self.pan)
 
 //        //複数のUIGestureRecognizerを持ったクラスのテスト
@@ -51,31 +51,31 @@ class KosuriGestureRecognizer : NSObject {
         
     }
     
-    func didPan(sender:AnyObject) {
+    func didPan(_ sender:AnyObject) {
         if let pan = sender as? UIPanGestureRecognizer,
-            targetViewA = self.targetViewA,
-            targetViewB = self.targetViewB,
-            outView = targetViewA.superview,
-            didPush = self.didPush
+            let targetViewA = self.targetViewA,
+            let targetViewB = self.targetViewB,
+            let outView = targetViewA.superview,
+            let didPush = self.didPush
         {
-            let p = pan.locationInView(outView) //outViewはViewControllerでいうところのself.view
+            let p = pan.location(in: outView) //outViewはViewControllerでいうところのself.view
             if !inFlagA && targetViewA.frame.contains(p) {
                 inFlagA = true
                 didPush()
-                targetViewA.setImage(buttonAImageSelected!, forState: .Normal)
+                targetViewA.setImage(buttonAImageSelected!, for: UIControlState())
             } else if inFlagA && !targetViewA.frame.contains(p) {
                 inFlagA = false
-                targetViewA.setImage(buttonAImage!, forState: .Normal)
+                targetViewA.setImage(buttonAImage!, for: UIControlState())
             } else if !inFlagB && targetViewB.frame.contains(p) {
                 inFlagB = true
                 didPush()
-                targetViewB.setImage(buttonBImageSelected!, forState: .Normal)
+                targetViewB.setImage(buttonBImageSelected!, for: UIControlState())
             } else if inFlagB && !targetViewB.frame.contains(p) {
                 inFlagB = false
-                targetViewB.setImage(buttonBImage!, forState: .Normal)
-            } else if sender.state == .Ended {
-                targetViewA.setImage(buttonAImage!, forState: .Normal)
-                targetViewB.setImage(buttonBImage!, forState: .Normal)
+                targetViewB.setImage(buttonBImage!, for: UIControlState())
+            } else if sender.state == .ended {
+                targetViewA.setImage(buttonAImage!, for: UIControlState())
+                targetViewB.setImage(buttonBImage!, for: UIControlState())
             }
         }
     }

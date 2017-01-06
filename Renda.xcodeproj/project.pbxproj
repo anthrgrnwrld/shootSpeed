@@ -19,29 +19,29 @@
 		364154311B6A4B65008E6DF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364154301B6A4B65008E6DF3 /* ViewController.swift */; };
 		364154341B6A4B65008E6DF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 364154321B6A4B65008E6DF3 /* Main.storyboard */; };
 		364154391B6A4B65008E6DF3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 364154371B6A4B65008E6DF3 /* LaunchScreen.xib */; };
-		364507391BC990D1002E7B83 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507361BC990D1002E7B83 /* facebookLogo.png */; settings = {ASSET_TAGS = (); }; };
-		3645073A1BC990D1002E7B83 /* facebookLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507371BC990D1002E7B83 /* facebookLogo@2x.png */; settings = {ASSET_TAGS = (); }; };
-		3645073B1BC990D1002E7B83 /* facebookLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507381BC990D1002E7B83 /* facebookLogo@3x.png */; settings = {ASSET_TAGS = (); }; };
-		364507651BCB4696002E7B83 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364507631BCB4696002E7B83 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
-		364507661BCB4696002E7B83 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364507641BCB4696002E7B83 /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
-		365948EF1BC2859B005FB23F /* GameCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948EC1BC2859B005FB23F /* GameCenter.png */; settings = {ASSET_TAGS = (); }; };
-		365948F01BC2859B005FB23F /* GameCenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948ED1BC2859B005FB23F /* GameCenter@2x.png */; settings = {ASSET_TAGS = (); }; };
-		365948F11BC2859B005FB23F /* GameCenter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948EE1BC2859B005FB23F /* GameCenter@3x.png */; settings = {ASSET_TAGS = (); }; };
-		3677A68D1BC33233000F3934 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3677A6841BC33233000F3934 /* GoogleMobileAds.framework */; settings = {ASSET_TAGS = (); }; };
-		3677A68E1BC33233000F3934 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3677A68B1BC33233000F3934 /* README.txt */; settings = {ASSET_TAGS = (); }; };
-		36AA9F4B1BC486EE0019641B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F4A1BC486EE0019641B /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		36AA9F571BC67CA40019641B /* logoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F541BC67CA40019641B /* logoDark.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F581BC67CA40019641B /* logoDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F551BC67CA40019641B /* logoDark@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F591BC67CA40019641B /* logoDark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F561BC67CA40019641B /* logoDark@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F631BC725E60019641B /* beeShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F601BC725E60019641B /* beeShadow.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F641BC725E60019641B /* beeShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F611BC725E60019641B /* beeShadow@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F651BC725E60019641B /* beeShadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F621BC725E60019641B /* beeShadow@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F6F1BC770400019641B /* logoDark5.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6C1BC770400019641B /* logoDark5.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F701BC770400019641B /* logoDark5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6D1BC770400019641B /* logoDark5@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F711BC770400019641B /* logoDark5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6E1BC770400019641B /* logoDark5@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F7B1BC7C3B50019641B /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F781BC7C3B50019641B /* bee.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F7C1BC7C3B50019641B /* bee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F791BC7C3B50019641B /* bee@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36AA9F7D1BC7C3B50019641B /* bee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F7A1BC7C3B50019641B /* bee@3x.png */; settings = {ASSET_TAGS = (); }; };
+		364507391BC990D1002E7B83 /* facebookLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507361BC990D1002E7B83 /* facebookLogo.png */; };
+		3645073A1BC990D1002E7B83 /* facebookLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507371BC990D1002E7B83 /* facebookLogo@2x.png */; };
+		3645073B1BC990D1002E7B83 /* facebookLogo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 364507381BC990D1002E7B83 /* facebookLogo@3x.png */; };
+		364507651BCB4696002E7B83 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364507631BCB4696002E7B83 /* Fabric.framework */; };
+		364507661BCB4696002E7B83 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 364507641BCB4696002E7B83 /* Crashlytics.framework */; };
+		365948EF1BC2859B005FB23F /* GameCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948EC1BC2859B005FB23F /* GameCenter.png */; };
+		365948F01BC2859B005FB23F /* GameCenter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948ED1BC2859B005FB23F /* GameCenter@2x.png */; };
+		365948F11BC2859B005FB23F /* GameCenter@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365948EE1BC2859B005FB23F /* GameCenter@3x.png */; };
+		3677A68D1BC33233000F3934 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3677A6841BC33233000F3934 /* GoogleMobileAds.framework */; };
+		3677A68E1BC33233000F3934 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3677A68B1BC33233000F3934 /* README.txt */; };
+		36AA9F4B1BC486EE0019641B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F4A1BC486EE0019641B /* Images.xcassets */; };
+		36AA9F571BC67CA40019641B /* logoDark.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F541BC67CA40019641B /* logoDark.png */; };
+		36AA9F581BC67CA40019641B /* logoDark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F551BC67CA40019641B /* logoDark@2x.png */; };
+		36AA9F591BC67CA40019641B /* logoDark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F561BC67CA40019641B /* logoDark@3x.png */; };
+		36AA9F631BC725E60019641B /* beeShadow.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F601BC725E60019641B /* beeShadow.png */; };
+		36AA9F641BC725E60019641B /* beeShadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F611BC725E60019641B /* beeShadow@2x.png */; };
+		36AA9F651BC725E60019641B /* beeShadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F621BC725E60019641B /* beeShadow@3x.png */; };
+		36AA9F6F1BC770400019641B /* logoDark5.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6C1BC770400019641B /* logoDark5.png */; };
+		36AA9F701BC770400019641B /* logoDark5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6D1BC770400019641B /* logoDark5@2x.png */; };
+		36AA9F711BC770400019641B /* logoDark5@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F6E1BC770400019641B /* logoDark5@3x.png */; };
+		36AA9F7B1BC7C3B50019641B /* bee.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F781BC7C3B50019641B /* bee.png */; };
+		36AA9F7C1BC7C3B50019641B /* bee@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F791BC7C3B50019641B /* bee@2x.png */; };
+		36AA9F7D1BC7C3B50019641B /* bee@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36AA9F7A1BC7C3B50019641B /* bee@3x.png */; };
 		36B9F94F1B99C2500078FF69 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B9F94E1B99C2500078FF69 /* AdSupport.framework */; };
 		36B9F9511B99C2CA0078FF69 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B9F9501B99C2CA0078FF69 /* AudioToolbox.framework */; };
 		36B9F9531B99C2D80078FF69 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36B9F9521B99C2D80078FF69 /* AVFoundation.framework */; };
@@ -85,19 +85,19 @@
 		36BF02341BBAC4530023A46E /* E.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF02161BBAC4530023A46E /* E.png */; };
 		36BF02351BBAC4530023A46E /* E@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF02171BBAC4530023A46E /* E@2x.png */; };
 		36BF02361BBAC4530023A46E /* E@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BF02181BBAC4530023A46E /* E@3x.png */; };
-		36CDD2BA1BD660C300F340CF /* ShootSpeed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36CDD2B91BD660C300F340CF /* ShootSpeed.gif */; settings = {ASSET_TAGS = (); }; };
-		36D73EA81BC971D700E5656A /* buttonA_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA01BC971D700E5656A /* buttonA_selected.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EA91BC971D700E5656A /* buttonA_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA11BC971D700E5656A /* buttonA_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EAA1BC971D700E5656A /* buttonA_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA21BC971D700E5656A /* buttonA_selected@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EAB1BC971D700E5656A /* buttonA.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA31BC971D700E5656A /* buttonA.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EAC1BC971D700E5656A /* buttonA@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA41BC971D700E5656A /* buttonA@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EAD1BC971D700E5656A /* buttonA@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA51BC971D700E5656A /* buttonA@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB41BC9755C00E5656A /* buttonB_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EAE1BC9755C00E5656A /* buttonB_selected.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB51BC9755C00E5656A /* buttonB_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EAF1BC9755C00E5656A /* buttonB_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB61BC9755C00E5656A /* buttonB_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB01BC9755C00E5656A /* buttonB_selected@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB71BC9755C00E5656A /* buttonB.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB11BC9755C00E5656A /* buttonB.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB81BC9755C00E5656A /* buttonB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB21BC9755C00E5656A /* buttonB@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36D73EB91BC9755C00E5656A /* buttonB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB31BC9755C00E5656A /* buttonB@3x.png */; settings = {ASSET_TAGS = (); }; };
+		36CDD2BA1BD660C300F340CF /* ShootSpeed.gif in Resources */ = {isa = PBXBuildFile; fileRef = 36CDD2B91BD660C300F340CF /* ShootSpeed.gif */; };
+		36D73EA81BC971D700E5656A /* buttonA_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA01BC971D700E5656A /* buttonA_selected.png */; };
+		36D73EA91BC971D700E5656A /* buttonA_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA11BC971D700E5656A /* buttonA_selected@2x.png */; };
+		36D73EAA1BC971D700E5656A /* buttonA_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA21BC971D700E5656A /* buttonA_selected@3x.png */; };
+		36D73EAB1BC971D700E5656A /* buttonA.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA31BC971D700E5656A /* buttonA.png */; };
+		36D73EAC1BC971D700E5656A /* buttonA@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA41BC971D700E5656A /* buttonA@2x.png */; };
+		36D73EAD1BC971D700E5656A /* buttonA@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EA51BC971D700E5656A /* buttonA@3x.png */; };
+		36D73EB41BC9755C00E5656A /* buttonB_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EAE1BC9755C00E5656A /* buttonB_selected.png */; };
+		36D73EB51BC9755C00E5656A /* buttonB_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EAF1BC9755C00E5656A /* buttonB_selected@2x.png */; };
+		36D73EB61BC9755C00E5656A /* buttonB_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB01BC9755C00E5656A /* buttonB_selected@3x.png */; };
+		36D73EB71BC9755C00E5656A /* buttonB.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB11BC9755C00E5656A /* buttonB.png */; };
+		36D73EB81BC9755C00E5656A /* buttonB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB21BC9755C00E5656A /* buttonB@2x.png */; };
+		36D73EB91BC9755C00E5656A /* buttonB@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D73EB31BC9755C00E5656A /* buttonB@3x.png */; };
 		36E4E74F1B8346E10045E3C7 /* GKScoreUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4E74D1B8206D50045E3C7 /* GKScoreUtil.swift */; };
 		36E4E8841B9665A80045E3C7 /* KosuriGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4E8831B9665A80045E3C7 /* KosuriGestureRecognizer.swift */; };
 		36E4E8851B9665EA0045E3C7 /* KosuriGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4E8831B9665A80045E3C7 /* KosuriGestureRecognizer.swift */; };
@@ -590,15 +590,17 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Masaki Horimoto";
 				TargetAttributes = {
 					364154281B6A4B65008E6DF3 = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = WBV73EJ8V2;
+						LastSwiftMigration = 0810;
 					};
 					3641543D1B6A4B65008E6DF3 = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0810;
 						TestTargetID = 364154281B6A4B65008E6DF3;
 					};
 				};
@@ -820,6 +822,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -829,8 +832,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -854,7 +859,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -869,6 +874,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -878,8 +884,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -896,12 +904,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -919,7 +928,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Renda/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -930,6 +939,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/AdMob-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -946,7 +956,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Renda/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -957,6 +967,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/AdMob-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -973,7 +984,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = RendaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -983,6 +994,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anthrgrnwrld.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/AdMob-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Renda.app/Renda";
 			};
 			name = Debug;
@@ -996,7 +1008,7 @@
 					"$(PROJECT_DIR)/GoogleMobileAdsSdkiOS-7.5.1",
 				);
 				INFOPLIST_FILE = RendaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1006,6 +1018,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.anthrgrnwrld.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PROJECT)/AdMob-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Renda.app/Renda";
 			};
 			name = Release;

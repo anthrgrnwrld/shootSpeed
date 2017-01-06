@@ -11,15 +11,15 @@ import GameKit
 
 struct GKScoreUtil {
     
-    static func reportScores(value:Int, leaderboardid:String){
-        print("\(__FUNCTION__) is called")
+    static func reportScores(_ value:Int, leaderboardid:String){
+        print("\(#function) is called")
         
         let score:GKScore = GKScore();
         score.value = Int64(value);
         score.leaderboardIdentifier = leaderboardid;
         let scoreArr:[GKScore] = [score];
         
-        GKScore.reportScores(scoreArr, withCompletionHandler:{(error:NSError?) -> Void in
+        GKScore.report(scoreArr, withCompletionHandler:{(error:Error?) -> Void in
             if( (error != nil)){
                 print("reportScore NG");
             }else{
